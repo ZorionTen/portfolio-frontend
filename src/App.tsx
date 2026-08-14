@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
-import { LuArrowBigUp, LuCornerDownLeft, LuPanelRightClose, LuPanelRightOpen } from 'react-icons/lu'
+import { LuArrowBigUp, LuCornerDownLeft } from 'react-icons/lu'
 import './App.css'
 import GithubPage from './GithubPage'
 import { formatGithubDate, useGithubPortfolio } from './github'
@@ -264,7 +264,6 @@ function ChatSidebar() {
         aria-expanded={isMobileOpen}
         onClick={() => setIsMobileOpen((current) => !current)}
       >
-        {isMobileOpen ? <LuPanelRightClose aria-hidden="true" /> : <LuPanelRightOpen aria-hidden="true" />}
         <span>{isMobileOpen ? 'Close AI chat' : 'Ask AI about me'}</span>
       </button>
       <div
