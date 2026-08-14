@@ -1930,9 +1930,9 @@ footer a:hover {
     justify-content: center;
     padding: 12px 1px;
     border: 0;
-    border-right: 1px solid #304032;
-    color: var(--black);
-    background: #baff3d;
+    border-right: 1px solid #baff3d;
+    color: #baff3d;
+    background: var(--black);
     font: 900 0.5rem/1 var(--mono);
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -1941,7 +1941,8 @@ footer a:hover {
 
   .chat-drawer-toggle:hover,
   .chat-drawer-toggle:focus-visible {
-    background: var(--white);
+    color: var(--black);
+    background: #baff3d;
   }
 
   .chat-drawer-toggle:focus-visible {
