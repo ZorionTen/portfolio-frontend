@@ -48,20 +48,18 @@ export default function GithubPage({ github }: GithubPageProps) {
         (first, second) => Date.parse(second.lastUpdatedAt) - Date.parse(first.lastUpdatedAt),
       )
     : []
-  const privateCount = repositories.filter((repository) => repository.isPrivate).length
-
   return (
     <main id="main-content" className="github-page">
       <section className="github-page-hero" id="top">
         <p className="eyebrow"><span>ENGINEERING ACTIVITY</span> GitHub repositories</p>
         <h1 className="glitch" data-text="CODE, IN MOTION.">CODE, IN<br />MOTION.</h1>
         <p>
-          A live view of projects I own or contribute to, ordered by most recent commit. Public
-          repositories open on GitHub; private work is represented by metadata only.
+          A live view of public projects I own or contribute to, ordered by most recent commit.
+          Private work contributes only anonymous skill evidence to the portfolio AI.
         </p>
         <div className="github-summary" aria-live="polite">
-          <div><strong>{github.isLoading ? '--' : repositories.length}</strong><span>Repositories</span></div>
-          <div><strong>{github.isLoading ? '--' : privateCount}</strong><span>Private collaborations</span></div>
+          <div><strong>{github.isLoading ? '--' : repositories.length}</strong><span>Public repositories</span></div>
+          <div><strong>{github.isLoading ? '--' : github.data?.rushServe.repositoryCount ?? 0}</strong><span>RushServe services</span></div>
         </div>
         <a className="button button-ghost github-home-link" href="#top">Back to portfolio</a>
       </section>
