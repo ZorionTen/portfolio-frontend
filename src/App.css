@@ -101,19 +101,28 @@
   box-shadow: -2px 0 var(--cyan), 2px 0 var(--magenta);
 }
 
-.site-header nav .nav-github {
+.site-header nav .nav-github,
+.site-header nav .nav-linkedin {
   width: 44px;
   justify-content: center;
 }
 
-.site-header nav .nav-github svg {
+.site-header nav .nav-github svg,
+.site-header nav .nav-linkedin svg {
   width: 19px;
   height: 19px;
+}
+
+.site-header nav .nav-github svg {
   fill: none;
   stroke: currentColor;
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.site-header nav .nav-linkedin svg {
+  fill: currentColor;
 }
 
 .site-header .nav-contact {
@@ -1911,8 +1920,7 @@ footer a:hover {
     z-index: 20;
     border-top: 1px solid var(--line);
     border-left: 1px solid var(--line);
-    box-shadow: -18px 0 38px rgba(0, 0, 0, 0.38);
-    transform: translateX(calc(100% - 44px));
+    transform: translateX(calc(100% - 16px));
     transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
@@ -1921,7 +1929,7 @@ footer a:hover {
   }
 
   .chat-drawer-toggle {
-    width: 44px;
+    width: 16px;
     position: absolute;
     inset: 0 auto 0 0;
     z-index: 2;
@@ -1929,33 +1937,26 @@ footer a:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 14px;
-    padding: 12px 8px;
+    padding: 12px 1px;
     border: 0;
-    border-right: 1px solid #304032;
-    color: var(--black);
-    background: #baff3d;
-    font: 900 0.65rem/1 var(--mono);
-    letter-spacing: 0.1em;
+    border-right: 1px solid #baff3d;
+    color: #baff3d;
+    background: var(--black);
+    font: 900 0.5rem/1 var(--mono);
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     cursor: pointer;
   }
 
   .chat-drawer-toggle:hover,
   .chat-drawer-toggle:focus-visible {
-    background: var(--white);
+    color: var(--black);
+    background: #baff3d;
   }
 
   .chat-drawer-toggle:focus-visible {
     outline: 2px solid var(--cyan);
     outline-offset: -4px;
-  }
-
-  .chat-drawer-toggle svg {
-    width: 20px;
-    height: 20px;
-    flex: 0 0 auto;
-    stroke-width: 2.2;
   }
 
   .chat-drawer-toggle span {
@@ -1965,7 +1966,7 @@ footer a:hover {
   }
 
   .chat-drawer-content {
-    margin-left: 44px;
+    margin-left: 16px;
   }
 
   .chat-messages {
@@ -2046,7 +2047,7 @@ footer a:hover {
     top: 64px;
   }
 
-  .site-header nav a:not(.nav-github) {
+  .site-header nav a:not(.nav-github):not(.nav-linkedin) {
     display: none;
   }
 
