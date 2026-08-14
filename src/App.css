@@ -101,19 +101,28 @@
   box-shadow: -2px 0 var(--cyan), 2px 0 var(--magenta);
 }
 
-.site-header nav .nav-github {
+.site-header nav .nav-github,
+.site-header nav .nav-linkedin {
   width: 44px;
   justify-content: center;
 }
 
-.site-header nav .nav-github svg {
+.site-header nav .nav-github svg,
+.site-header nav .nav-linkedin svg {
   width: 19px;
   height: 19px;
+}
+
+.site-header nav .nav-github svg {
   fill: none;
   stroke: currentColor;
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.site-header nav .nav-linkedin svg {
+  fill: currentColor;
 }
 
 .site-header .nav-contact {
@@ -2038,7 +2047,7 @@ footer a:hover {
     top: 64px;
   }
 
-  .site-header nav a:not(.nav-github) {
+  .site-header nav a:not(.nav-github):not(.nav-linkedin) {
     display: none;
   }
 

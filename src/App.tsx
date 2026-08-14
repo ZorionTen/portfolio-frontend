@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { FormEvent } from 'react'
+import { FaLinkedinIn } from 'react-icons/fa6'
 import { LuArrowBigUp, LuCornerDownLeft } from 'react-icons/lu'
 import './App.css'
 import GithubPage from './GithubPage'
@@ -540,6 +541,7 @@ function App() {
           <a className={activeSection === 'featured' ? 'is-active' : undefined} aria-current={activeSection === 'featured' ? 'location' : undefined} href="#featured">Featured</a>
           <a className={activeSection === 'stack' ? 'is-active' : undefined} aria-current={activeSection === 'stack' ? 'location' : undefined} href="#stack">Stack</a>
           <a className={`nav-github${activeSection === 'github' ? ' is-active' : ''}`} aria-label="GitHub repositories" aria-current={activeSection === 'github' ? 'page' : undefined} href="#/github"><GithubIcon /><span className="sr-only">GitHub repositories</span></a>
+          <a className="nav-linkedin" aria-label="LinkedIn profile" href="https://www.linkedin.com/in/zaid-haider-b3ba3919/" target="_blank" rel="noreferrer"><FaLinkedinIn aria-hidden="true" /><span className="sr-only">LinkedIn profile</span></a>
           <button className={`nav-contact${activeSection === 'contact' ? ' is-active' : ''}`} aria-current={activeSection === 'contact' ? 'location' : undefined} type="button" onClick={() => setIsContactOpen(true)}>Contact</button>
         </nav>
       </header>
