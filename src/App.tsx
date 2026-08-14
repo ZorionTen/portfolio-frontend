@@ -6,8 +6,8 @@ import './App.css'
 import GithubPage from './GithubPage'
 import { formatGithubDate, useGithubPortfolio } from './github'
 
-const AI_BASE_URL = import.meta.env.VITE_AI_API_URL ?? 'https://portfolio-ai-dla4.onrender.com'
 const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_API_URL ?? 'https://portfolio-backend-lutt.onrender.com'
+const AI_BASE_URL = import.meta.env.VITE_AI_API_URL ?? `${BACKEND_BASE_URL}/api/assistant`
 
 type ServiceStatus = 'waking' | 'ready'
 type ChatMessage = { id: string; role: 'assistant' | 'user'; text: string; sources?: string[] }
