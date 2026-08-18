@@ -1,3 +1,4 @@
+import React from 'react'
 import { formatGithubDate } from './github'
 import type { GithubPortfolioState, GithubRepository } from './github'
 
@@ -32,7 +33,18 @@ function RepositoryEntry({ repository, index }: { repository: GithubRepository; 
         <p>{repository.description || 'Repository details are not publicly documented.'}</p>
       </div>
       <div className="repository-meta">
-        <span>{repository.language || 'No primary language'}</span>
+        {repository.languages.length > 0 ? (
+          <span className="repository-languages">
+            {repository.languages.map((lang, i) => (
+              <React.Fragment key={lang}>
+                <span className="language-tag">{lang}</span>
+                {i < repository.languages.length - 1 && <span className="language-separator">/</span>}
+              </React.Fragment>
+            ))}
+          </span>
+        ) : (
+          <span>No languages detected</span>
+        )}
         {repository.isFork && <span>Contributed fork</span>}
         <time dateTime={repository.lastUpdatedAt}>
           Last commit {formatGithubDate(repository.lastUpdatedAt)}

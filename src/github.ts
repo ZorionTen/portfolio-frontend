@@ -6,7 +6,7 @@ export type GithubRepository = {
   description: string | null
   isPrivate: boolean
   isFork: boolean
-  language: string | null
+  languages: string[]
   lastUpdatedAt: string
   url: string | null
 }
