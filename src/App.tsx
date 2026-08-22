@@ -373,6 +373,7 @@ type ContactDialogProps = {
 
 function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null)
+  const [visitorName, setVisitorName] = useState('')
   const [companyName, setCompanyName] = useState('')
   const [applicationEmail, setApplicationEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'saving' | 'error'>('idle')
@@ -396,7 +397,7 @@ function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
       const response = await fetch(`${BACKEND_BASE_URL}/api/contact-intents`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ companyName, applicationEmail }),
+        body: JSON.stringify({ visitorName, companyName, applicationEmail }),
       })
 
       if (!response.ok) throw new Error('Unable to save contact details')
@@ -412,6 +413,7 @@ function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
         window.location.href = gmailUrl
       }
 
+      setVisitorName('')
       setCompanyName('')
       setApplicationEmail('')
       setStatus('idle')
@@ -440,9 +442,19 @@ function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
         <p className="dialog-kicker">Establish connection</p>
         <h2>Open a conversation.</h2>
         <p className="dialog-intro">
-          Add context if you want. Both fields are optional and are saved only to help Zaid
+          Add context if you want. All fields are optional and are saved only to help Zaid
           identify the opportunity. Gmail opens after the details are saved.
         </p>
+
+        <label htmlFor="visitor-name">Name <span>Optional</span></label>
+        <input
+          id="visitor-name"
+          value={visitorName}
+          onChange={(event) => setVisitorName(event.target.value)}
+          maxLength={120}
+          autoComplete="name"
+          placeholder="Your name"
+        />
 
         <label htmlFor="company-name">Company name <span>Optional</span></label>
         <input
@@ -454,7 +466,7 @@ function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
           placeholder="Acme, Inc."
         />
 
-        <label htmlFor="application-email">Your job application email <span>Optional</span></label>
+        <label htmlFor="application-email">Email <span>Optional</span></label>
         <input
           id="application-email"
           type="email"
