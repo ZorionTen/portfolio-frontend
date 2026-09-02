@@ -8,6 +8,7 @@ import { formatGithubDate, useGithubPortfolio } from './github'
 
 const BACKEND_BASE_URL = import.meta.env.VITE_BACKEND_API_URL ?? 'https://portfolio-backend-lutt.onrender.com'
 const AI_BASE_URL = import.meta.env.VITE_AI_API_URL ?? `${BACKEND_BASE_URL}/api/assistant`
+const AI_HEALTH_URL = import.meta.env.VITE_AI_HEALTH_URL ?? 'https://portfolio-ai-dla4.onrender.com/health'
 
 type ServiceStatus = 'waking' | 'ready'
 type ChatMessage = { id: string; role: 'assistant' | 'user'; text: string; sources?: string[] }
@@ -141,13 +142,14 @@ function ChatSidebar() {
     let cancelled = false
     let retryTimer: ReturnType<typeof setTimeout>
     let activeRequest: AbortController | undefined
+    let retryDelay = 4000
 
     const checkHealth = async () => {
       activeRequest = new AbortController()
       const requestTimeout = window.setTimeout(() => activeRequest?.abort(), 8000)
 
       try {
-        const response = await fetch(`${AI_BASE_URL}/health`, {
+        const response = await fetch(AI_HEALTH_URL, {
           cache: 'no-store',
           signal: activeRequest.signal,
         })
@@ -165,7 +167,8 @@ function ChatSidebar() {
 
       if (!cancelled) {
         setServiceStatus('waking')
-        retryTimer = window.setTimeout(checkHealth, 4000)
+        retryTimer = window.setTimeout(checkHealth, retryDelay)
+        retryDelay = Math.min(retryDelay * 2, 30000)
       }
     }
 
