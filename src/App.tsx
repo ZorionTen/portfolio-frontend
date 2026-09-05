@@ -372,9 +372,10 @@ function ChatSidebar() {
 type ContactDialogProps = {
   isOpen: boolean
   onClose: () => void
+  sessionId: string
 }
 
-function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
+function ContactDialog({ isOpen, onClose, sessionId }: ContactDialogProps) {
   const dialogRef = useRef<HTMLDialogElement>(null)
   const [visitorName, setVisitorName] = useState('')
   const [companyName, setCompanyName] = useState('')
@@ -400,7 +401,7 @@ function ContactDialog({ isOpen, onClose }: ContactDialogProps) {
       const response = await fetch(`${BACKEND_BASE_URL}/api/contact-intents`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ visitorName, companyName, applicationEmail }),
+        body: JSON.stringify({ name: visitorName, companyName, email: applicationEmail, sessionId }),
       })
 
       if (!response.ok) throw new Error('Unable to save contact details')
@@ -499,6 +500,7 @@ function App() {
   const [isContactOpen, setIsContactOpen] = useState(false)
   const [isGithubPage, setIsGithubPage] = useState(window.location.hash === '#/github')
   const [activeSection, setActiveSection] = useState('')
+  const [sessionId] = useState(getChatSessionId)
   const github = useGithubPortfolio(BACKEND_BASE_URL)
 
   useEffect(() => {
@@ -825,7 +827,7 @@ function App() {
         <p>BUILT WITH REACT <span aria-hidden="true">//</span> SIGNAL STABLE</p>
         <a href={isGithubPage ? '#/github' : '#top'} onClick={isGithubPage ? () => window.scrollTo({ top: 0, behavior: 'smooth' }) : undefined}>BACK TO TOP ↑</a>
       </footer>
-      <ContactDialog isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+      <ContactDialog isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} sessionId={sessionId} />
     </div>
   )
 }
